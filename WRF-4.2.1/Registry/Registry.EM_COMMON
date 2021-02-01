@@ -233,7 +233,7 @@ state    real   th_phy_m_t0    ikj      dyn_em      1         -     irhd      "t
 state    real   t              ikjb     dyn_em      2         -     \
        i0rhusdf=(bdy_interp:dt)   "thm"      "either 1) pert moist pot temp=(1+Rv/Rd Qv)*(theta)-T0, or 2) pert dry pot temp=theta-T0; based on use_theta_m setting" "K"
 
-state    real   t_init         ikj     dyn_em      1         -      ird       "t_init" "initial potential temperature" "K"
+state    real   t_init         ikj     dyn_em      1         -      irh       "t_init" "initial potential temperature" "K"
 i1       real   t_tend         ikj     dyn_em      1         -  
 i1       real   t_tendf        ikj     dyn_em      1         -  
 i1       real   t_2save        ikj     dyn_em      1         -   
@@ -1241,9 +1241,9 @@ state   real    lnint          ij      misc         1         -      r        "L
 
 
 # Other Misc State Variables                                            
-state   real    h_diabatic     ikj     misc         1         -      rdu      "h_diabatic"            "MICROPHYSICS LATENT HEATING"         "K s-1"      
-state   real    qv_diabatic    ikj     misc         1         -      rdu      "qv_diabatic"           "MICROPHYSICS QV TENDENCY"            "g g-1 s-1"      
-state   real    qc_diabatic    ikj     misc         1         -      rdu      "qc_diabatic"           "MICROPHYSICS QC TENDENCY"            "g g-1 s-1"      
+state   real    h_diabatic     ikj     misc         1         -      irh      "h_diabatic"            "MICROPHYSICS LATENT HEATING"         "K s-1"      
+state   real    qv_diabatic    ikj     misc         1         -      irh      "qv_diabatic"           "MICROPHYSICS QV TENDENCY"            "g g-1 s-1"      
+state   real    qc_diabatic    ikj     misc         1         -      irh      "qc_diabatic"           "MICROPHYSICS QC TENDENCY"            "g g-1 s-1"      
 state   real    msft           ij      misc         1         -     i012rdu=(copy_fcnm)    "MAPFAC_M"         "Map scale factor on mass grid" ""
 state   real    msfu           ij      misc         1         X     i012rdu=(copy_fcnm)    "MAPFAC_U"         "Map scale factor on u-grid" ""
 state   real    msfv           ij      misc         1         Y     i012rdu=(copy_fcnm)    "MAPFAC_V"         "Map scale factor on v-grid" ""
@@ -1272,10 +1272,10 @@ state   integer min_ptchsz     -       misc         1         -     r
 state   real    TSK            ij      misc         1         -     i012rhd=(interp_mask_field:lu_index,iswater)u=(copy_fcnm)    "TSK"                   "SURFACE SKIN TEMPERATURE"                  "K"
 state   real    dfi_TSK        ij      misc         1         -     r                       "TSK_dfi"               "saved SURFACE SKIN TEMPERATURE"
 state   real    TSK_SAVE       ij      misc         1         -     r         "TSK_SAVE" "SURFACE SKIN TEMPERATURE, EXTRA COPY FOR SEA ICE TESTS in REAL"       "K"
-state   real    u_base         k       misc         1         -     ir        "u_base"                "BASE STATE X WIND IN IDEALIZED CASES"         ""      
-state   real    v_base         k       misc         1         -     ir        "v_base"                "BASE STATE Y WIND IN IDEALIZED CASES"         ""      
-state   real    qv_base        k       misc         1         -     ir        "qv_base"               "BASE STATE QV IN IDEALIZED CASES"         ""      
-state   real    z_base         k       misc         1         -     ir        "z_base"                "BASE STATE HEIGHT IN IDEALIZED CASES"         ""      
+state   real    u_base         k       misc         1         -     irh        "u_base"                "BASE STATE X WIND IN IDEALIZED CASES"         ""      
+state   real    v_base         k       misc         1         -     irh        "v_base"                "BASE STATE Y WIND IN IDEALIZED CASES"         ""      
+state   real    qv_base        k       misc         1         -     irh        "qv_base"               "BASE STATE QV IN IDEALIZED CASES"         ""      
+state   real    z_base         k       misc         1         -     irh        "z_base"                "BASE STATE HEIGHT IN IDEALIZED CASES"         ""      
 state   real    u_frame        -       misc         1         -     ir        "u_frame"               "FRAME X WIND"         "m s-1"      
 state   real    v_frame        -       misc         1         -     ir        "v_frame"               "FRAME Y WIND"         "m s-1"      
 # p_top appears as metadata between SI and real but as a state variable in real and WRF
@@ -1449,7 +1449,8 @@ state    real  HAILNC           ij      misc        1         -      rhdu     "H
 state    real  SNOWNCV          ij      misc        1         -      r        "SNOWNCV"               "TIME-STEP NONCONVECTIVE SNOW AND ICE"                    "mm"
 state    real  GRAUPELNCV       ij      misc        1         -      r        "GRAUPELNCV"            "TIME-STEP NONCONVECTIVE GRAUPEL"                         "mm"
 state    real  HAILNCV          ij      misc        1         -      r        "HAILNCV"               "TIME-STEP NONCONVECTIVE HAIL"                            "mm"
-state    real  refl_10cm       ikj      dyn_em      1         -      hdu      "refl_10cm"             "Radar reflectivity (lamda = 10 cm)"  "dBZ"
+state    real  refl_10cm       ikj      dyn_em      1         -      irh      "refl_10cm"             "Radar reflectivity (lamda = 10 cm)"  "dBZ"
+state    real  vt_dbz_wt       ikj      dyn_em      1         -      irh      "vt_dbz_wt"             "vt_dbz_wt according to Glen R."
 state    real  mskf_refl_10cm  ikj      dyn_em      1         -      hdu      "mskf_refl_10cm"        "Full Radar reflectivity (lamda = 10 cm)"  "dBZ"
 state    real    th_old          ikj      misc        1         -      rusd        "TH_OLD"              "Old Value of Th"   "K"
 state    real    qv_old          ikj      misc        1         -      rusd        "QV_OLD"              "Old Value of qv"   "kg kg-1"
